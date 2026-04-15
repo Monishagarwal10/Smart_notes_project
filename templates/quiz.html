@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Learning Quiz Zone | Smart Note Taker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="top-nav">
+    <div class="nav-wrap container">
+        <div class="brand">Smart Note Taker</div>
+        <nav class="nav-links page-links">
+            <a href="/">Home</a>
+            <a href="/summary">Summary</a>
+            <a href="/mindmap">Mind Map</a>
+            <a href="/smart-learning">Smart Learning</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container page-main">
+    <section class="card-panel">
+        <h2>Smart Learning - Quiz Zone</h2>
+        <p class="section-subtitle">Generate MCQ questions from your uploaded PDF/manual notes and test your understanding instantly.</p>
+        <textarea id="quizText" rows="7" placeholder="Optional: paste custom notes here. If left empty, last processed notes are used from this app."></textarea>
+        <div class="button-row">
+            <button id="generateQuiz" class="btn btn-primary">Generate Quiz</button>
+            <button id="resetQuiz" class="btn btn-outline">Reset</button>
+        </div>
+    </section>
+
+    <section class="card-panel">
+        <h3>Quiz Questions</h3>
+        <div id="quizList" class="quiz-list">
+            <p class="section-subtitle">Generate a quiz to begin.</p>
+        </div>
+        <div id="quizCheckWrap" class="button-row quiz-check-wrap hidden">
+            <button id="checkAnswers" class="btn btn-secondary">Check Answers</button>
+        </div>
+    </section>
+</main>
+
+<div id="toast" class="toast"></div>
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+</body>
+</html>

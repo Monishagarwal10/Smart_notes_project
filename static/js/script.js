@@ -48,6 +48,9 @@ function setCurrentResult(data) {
 }
 
 function renderSummary(summary) {
+    if (!elements.summaryTitle || !elements.summaryParagraph || !elements.summaryPoints || !elements.summaryMeta) {
+        return;
+    }
     elements.summaryTitle.textContent = summary.title || "Summary";
     elements.summaryParagraph.textContent = summary.paragraph || "No summary generated.";
     const points = summary.key_points || [];
@@ -62,6 +65,9 @@ function renderSummary(summary) {
 }
 
 function renderKeywords(keywords) {
+    if (!elements.keywordChips) {
+        return;
+    }
     elements.keywordChips.innerHTML = "";
     keywords.forEach((keyword) => {
         const chip = document.createElement("span");
@@ -95,7 +101,9 @@ function triggerDownload(filename, blob) {
 }
 
 elements.menuToggle.addEventListener("click", () => {
-    elements.navMenu.classList.toggle("open");
+    if (elements.navMenu) {
+        elements.navMenu.classList.toggle("open");
+    }
 });
 
 elements.pdfForm.addEventListener("submit", async (event) => {

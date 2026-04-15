@@ -6,8 +6,10 @@ from datetime import datetime
 from flask import Flask, jsonify, render_template, request, send_file
 
 from utils.nlp_utils import (
+    check_quiz_answers,
     clean_text,
     extract_keywords,
+    generate_quiz_questions,
     generate_mindmap_data,
     normalize_pdf_text,
     segment_content,
@@ -87,6 +89,11 @@ def mindmap_page():
     return render_template("mindmap.html")
 
 
+@app.route("/smart-learning")
+def smart_learning_page():
+    return render_template("quiz.html")
+
+
 @app.route("/upload_pdf", methods=["POST"])
 def upload_pdf():
     if "pdf" not in request.files:
@@ -133,6 +140,53 @@ def process_speech():
 
     payload = build_response_payload("speech", title, transcript)
     return jsonify(payload)
+
+
+@app.route("/generate_quiz", methods=["POST"])
+def generate_quiz():
+    data = request.get_json(silent=True) or {}
+    text = data.get("text") or data.get("raw_text") or data.get("cleaned_text") or ""
+    text = text.strip()
+    summary = data.get("summary", {})
+    keywords = data.get("keywords", [])
+    max_questions = data.get("max_questions", 5)
+
+    try:
+        max_questions = int(max_questions)
+    except (TypeError, ValueError):
+        max_questions = 5
+    max_questions = min(max(max_questions, 3), 10)
+
+    if not text and summary:
+        text = " ".join(summary.get("key_points", []))
+
+    if not text:
+        return jsonify({"error": "No notes content found. Upload/process notes first."}), 400
+
+    questions = generate_quiz_questions(
+        text=text,
+        summary=summary,
+        keywords=keywords,
+        max_questions=max_questions,
+    )
+    if not questions:
+        return jsonify({"error": "Not enough content to generate quiz questions."}), 400
+
+    return jsonify({"questions": questions})
+
+
+@app.route("/check_quiz", methods=["POST"])
+def check_quiz():
+    data = request.get_json(silent=True) or {}
+    questions = data.get("questions", [])
+    answers = data.get("answers", {})
+    if not questions:
+        return jsonify({"error": "No quiz questions provided."}), 400
+    if not isinstance(answers, dict):
+        return jsonify({"error": "Answers format is invalid."}), 400
+
+    result = check_quiz_answers(questions, answers)
+    return jsonify(result)
 
 
 @app.route("/generate_mindmap", methods=["POST"])

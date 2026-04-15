@@ -17,9 +17,9 @@
         <nav id="navMenu" class="nav-links">
             <a href="#home">Home</a>
             <a href="#features">Features</a>
-            <a href="#pdf-notes">PDF Notes</a>
-            <a href="#live-lecture">Live Lecture</a>
-            <a href="#mind-map">Mind Map</a>
+            <a href="#smart-learning">Smart Learning</a>
+            <a href="/summary">Summary</a>
+            <a href="/mindmap">Mind Map</a>
             <a href="#saved-notes">Saved Notes</a>
         </nav>
     </div>
@@ -56,14 +56,19 @@
                 <a href="#manual-notes" class="btn btn-outline">Use Feature</a>
             </article>
             <article class="feature-card">
+                <h3>Smart Learning Quiz Zone</h3>
+                <p>Generate MCQs from your processed notes and instantly check your understanding.</p>
+                <a href="/smart-learning" class="btn btn-outline">Open Quiz Zone</a>
+            </article>
+            <article class="feature-card">
                 <h3>Keyword Extractor</h3>
                 <p>Identify important concepts with explainable TF-IDF style keyword scoring.</p>
-                <a href="#results" class="btn btn-outline">Use Feature</a>
+                <a href="#export-tools" class="btn btn-outline">Use Feature</a>
             </article>
             <article class="feature-card">
                 <h3>Mind Map Generator</h3>
                 <p>Visualize concept relationships through an interactive, zoomable mind map graph.</p>
-                <a href="#mind-map" class="btn btn-outline">Use Feature</a>
+                <a href="/mindmap" class="btn btn-outline">Use Feature</a>
             </article>
             <article class="feature-card">
                 <h3>Saved Notes / History</h3>
@@ -107,30 +112,10 @@
         <button id="processText" class="btn btn-primary">Process Manual Notes</button>
     </section>
 
-    <section id="results" class="section card-panel">
-        <h2>Results Workspace</h2>
-        <p class="section-subtitle">After processing, you will be redirected to a dedicated Summary page. You can then open the Mind Map page with topic-wise controls.</p>
-        <div class="result-grid">
-            <article class="result-card summary-card">
-                <h3>Processing Preview</h3>
-                <div class="summary-title-wrap">
-                    <h4 id="summaryTitle">No content processed yet</h4>
-                    <span id="summaryMeta" class="summary-meta">Waiting for input</span>
-                </div>
-                <p id="summaryParagraph" class="summary-paragraph">Process PDF/manual/live lecture input to generate whole-document and section-wise summaries.</p>
-                <div id="summaryPoints" class="keypoint-list"></div>
-                <div class="button-row">
-                    <a href="/summary" class="btn btn-secondary">Open Summary Page</a>
-                    <a href="/mindmap" class="btn btn-secondary">Open Mind Map Page</a>
-                </div>
-            </article>
-
-            <article class="result-card">
-                <h3>Keywords</h3>
-                <p class="section-subtitle">Ranked by explainable TF-IDF style score</p>
-                <div id="keywordChips" class="chip-wrap"></div>
-            </article>
-        </div>
+    <section id="smart-learning" class="section card-panel">
+        <h2>Smart Learning</h2>
+        <p class="section-subtitle">Go to Quiz Zone to auto-generate MCQs from your uploaded PDF/notes and check answers.</p>
+        <a href="/smart-learning" class="btn btn-primary">Open Quiz Zone</a>
     </section>
 
     <section id="mind-map" class="section card-panel">

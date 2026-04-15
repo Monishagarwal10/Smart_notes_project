@@ -457,6 +457,66 @@ body.map-fullscreen .map-controls-overlay {
     font-size: 0.85rem;
 }
 
+.quiz-list {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.quiz-card {
+    border: 1px solid #e0e7f5;
+    border-radius: 10px;
+    padding: 0.85rem;
+    background: #f9fbff;
+}
+
+.quiz-card h4 {
+    margin-bottom: 0.65rem;
+}
+
+.quiz-options {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.quiz-option {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
+    background: #ffffff;
+    border: 1px solid #e3eaf8;
+    border-radius: 8px;
+    padding: 0.45rem 0.55rem;
+}
+
+.quiz-option-correct {
+    border-color: #7bc89a;
+    background: #eaf8ef;
+}
+
+.quiz-option-wrong {
+    border-color: #e08c8c;
+    background: #fdeeee;
+}
+
+.quiz-explanation {
+    margin-top: 0.55rem;
+    border-left: 4px solid #e08c8c;
+    background: #fff7f7;
+    border-radius: 8px;
+    padding: 0.55rem 0.65rem;
+    color: #6a2f2f;
+    line-height: 1.45;
+    font-size: 0.88rem;
+}
+
+.quiz-check-wrap {
+    margin-top: 0.9rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
 .warning-text {
     color: #9a6200;
     margin-top: 0.7rem;

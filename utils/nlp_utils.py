@@ -1,4 +1,5 @@
 import math
+import random
 import re
 import unicodedata
 from collections import Counter
@@ -152,6 +153,15 @@ def extract_keywords(text, top_k=15):
 
 
 def _compact_phrase(sentence, max_words=5):
+    sentence = re.sub(r"\s+", " ", sentence).strip()
+    # Prefer left side of definitions to keep node titles meaningful.
+    defn_match = re.match(r"^(.+?)\s+(is|are|refers to|means|defined as)\s+.+$", sentence, flags=re.IGNORECASE)
+    if defn_match:
+        phrase = defn_match.group(1)
+        phrase_words = [token for token in tokenize(phrase) if token not in STOPWORDS]
+        if phrase_words:
+            return " ".join(phrase_words[:max_words]).title()
+
     words = [token for token in tokenize(sentence) if token not in STOPWORDS]
     if not words:
         return "Key Idea"
@@ -159,19 +169,56 @@ def _compact_phrase(sentence, max_words=5):
 
 
 def _short_description(sentence, max_words=18):
-    words = sentence.split()
+    cleaned = re.sub(r"\s+", " ", sentence).strip()
+    words = cleaned.split()
     trimmed = " ".join(words[:max_words]).strip()
     return trimmed + ("..." if len(words) > max_words else "")
 
 
+def _select_mindmap_points(text, fallback_points, max_points=7):
+    all_sentences = split_sentences(text)
+    if not all_sentences:
+        return fallback_points[:max_points]
+
+    words = [token for token in tokenize(text) if token not in STOPWORDS]
+    frequencies = Counter(words)
+    ranked = []
+    seen = set()
+
+    candidate_pool = list(fallback_points) + all_sentences
+    for sentence in candidate_pool:
+        normalized = re.sub(r"\s+", " ", sentence).strip()
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+
+        sentence_tokens = [token for token in tokenize(normalized) if token not in STOPWORDS]
+        if len(sentence_tokens) < 6:
+            continue
+        if re.search(r"\b(introduction|conclusion|overview|table|figure|contents)\b", normalized, flags=re.IGNORECASE):
+            continue
+
+        score = sum(frequencies.get(token, 0) for token in sentence_tokens)
+        if re.search(r"\bis\b|\bare\b|\brefers to\b|\bmeans\b|\bdefined as\b", normalized, flags=re.IGNORECASE):
+            score += 8
+        if 8 <= len(sentence_tokens) <= 22:
+            score += 4
+        ranked.append((normalized, score))
+
+    ranked.sort(key=lambda item: item[1], reverse=True)
+    selected = [item[0] for item in ranked[:max_points]]
+    return selected if selected else fallback_points[:max_points]
+
+
 def generate_mindmap_data(text, keywords):
-    summary = summarize_text(text, max_sentences=6)
+    summary = summarize_text(text, max_sentences=7)
     center_topic = summary["title"].replace(" • ", " | ") if summary["title"] else "Core Topic"
     center_title = f"Mind Map\n{center_topic}"
-    points = summary.get("key_points", [])[:6]
+    points = summary.get("key_points", [])[:7]
 
     if not points:
-        points = split_sentences(text)[:6]
+        points = split_sentences(text)[:7]
+    points = _select_mindmap_points(text, points, max_points=7)
 
     palette = [
         {"background": "#a8d8f0", "border": "#5fa8d3"},
@@ -194,7 +241,7 @@ def generate_mindmap_data(text, keywords):
     ]
     edges = []
 
-    radius = 360
+    radius = 340
     for idx, point in enumerate(points, start=1):
         angle = (2 * math.pi * (idx - 1)) / max(1, len(points))
         x_pos = int(radius * math.cos(angle))
@@ -226,9 +273,9 @@ def generate_mindmap_data(text, keywords):
                 keyword_terms.append(kw.get("term", ""))
             elif isinstance(kw, str):
                 keyword_terms.append(kw)
-        keyword_terms = [term for term in keyword_terms if term][: 6 - len(points)]
+        keyword_terms = [term for term in keyword_terms if term][: 7 - len(points)]
         for idx, term in enumerate(keyword_terms, start=len(points) + 1):
-            angle = (2 * math.pi * (idx - 1)) / 6
+            angle = (2 * math.pi * (idx - 1)) / 7
             x_pos = int(radius * math.cos(angle))
             y_pos = int(radius * math.sin(angle))
             color = palette[(idx - 1) % len(palette)]
@@ -324,3 +371,175 @@ def segment_content(text):
         )
 
     return enriched
+
+
+def _to_title(text):
+    return re.sub(r"\s+", " ", text.strip()).title()
+
+
+def _extract_answer_phrase(sentence):
+    normalized = re.sub(r"\s+", " ", sentence).strip(" .")
+    if not normalized:
+        return ""
+
+    patterns = [
+        r"^(.+?)\s+is\s+(?:an?\s+|the\s+)?(.+)$",
+        r"^(.+?)\s+are\s+(?:an?\s+|the\s+)?(.+)$",
+        r"^(.+?)\s+refers to\s+(.+)$",
+        r"^(.+?)\s+means\s+(.+)$",
+        r"^(.+?)\s+defined as\s+(.+)$",
+    ]
+    for pattern in patterns:
+        match = re.match(pattern, normalized, flags=re.IGNORECASE)
+        if match:
+            subject = match.group(1).strip(" ,.-")
+            if 1 <= len(subject.split()) <= 8:
+                return _to_title(subject)
+
+    tokens = [token for token in tokenize(normalized) if token not in STOPWORDS]
+    if not tokens:
+        return ""
+    return _to_title(" ".join(tokens[:3]))
+
+
+def _sentence_to_question(sentence, answer_phrase):
+    normalized = re.sub(r"\s+", " ", sentence).strip(" .")
+    if not normalized:
+        return "What is the key concept in this note?"
+
+    if re.search(r"\bis\b|\bare\b|\brefers to\b|\bmeans\b|\bdefined as\b", normalized, flags=re.IGNORECASE):
+        return f"What is {answer_phrase.lower()}?"
+    return f"Which concept is best described by: \"{normalized}\"?"
+
+
+def _question_relevance_score(sentence, text_tokens):
+    sentence_tokens = [token for token in tokenize(sentence) if token not in STOPWORDS]
+    if len(sentence_tokens) < 5:
+        return -1
+    overlap = sum(1 for token in sentence_tokens if token in text_tokens)
+    definition_bonus = 2 if re.search(r"\bis\b|\bare\b|\brefers to\b|\bmeans\b|\bdefined as\b", sentence, flags=re.IGNORECASE) else 0
+    return overlap + definition_bonus
+
+
+def generate_quiz_questions(text, summary=None, keywords=None, max_questions=5):
+    summary = summary or {}
+    keywords = keywords or []
+    text_tokens = set(tokenize(text))
+    important_sentences = []
+    candidates = list(summary.get("key_points", [])) + split_sentences(text)
+    seen = set()
+    ranked = []
+    for sentence in candidates:
+        normalized = re.sub(r"\s+", " ", sentence).strip()
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        score = _question_relevance_score(normalized, text_tokens)
+        if score < 0:
+            continue
+        ranked.append((normalized, score))
+    ranked.sort(key=lambda item: item[1], reverse=True)
+    important_sentences = [item[0] for item in ranked[: max_questions * 2]]
+
+    if not important_sentences:
+        return []
+
+    keyword_pool = []
+    for kw in keywords:
+        if isinstance(kw, dict):
+            term = kw.get("term", "")
+        else:
+            term = str(kw)
+        term = term.strip()
+        if len(term) >= 3:
+            keyword_pool.append(_to_title(term))
+
+    sentence_phrases = []
+    for sentence in split_sentences(text):
+        phrase = _extract_answer_phrase(sentence)
+        if phrase and phrase not in sentence_phrases:
+            sentence_phrases.append(phrase)
+
+    distractor_pool = []
+    for item in keyword_pool + sentence_phrases:
+        if item and item not in distractor_pool:
+            distractor_pool.append(item)
+
+    questions = []
+    for idx, sentence in enumerate(important_sentences[:max_questions], start=1):
+        answer = _extract_answer_phrase(sentence)
+        if not answer:
+            continue
+
+        lower_answer = answer.lower()
+        distractors = [item for item in distractor_pool if item.lower() != lower_answer]
+        if len(distractors) < 3:
+            distractors.extend(
+                [
+                    "Core Principle",
+                    "Reference Concept",
+                    "Primary Framework",
+                    "Central Process",
+                ]
+            )
+
+        options = [answer] + random.sample(distractors, k=3)
+        random.shuffle(options)
+        cleaned_sentence = re.sub(r"\s+", " ", sentence).strip()
+        explanation = (
+            f"The note states: \"{cleaned_sentence}\".\n"
+            f"Your selected option does not match that statement.\n"
+            f"The precise answer is \"{answer}\" based on the original context."
+        )
+        questions.append(
+            {
+                "id": f"q_{idx}",
+                "question": _sentence_to_question(sentence, answer),
+                "options": options,
+                "correct_index": options.index(answer),
+                "explanation": explanation,
+            }
+        )
+
+    return questions
+
+
+def check_quiz_answers(questions, answers):
+    total = len(questions)
+    score = 0
+    details = []
+
+    for question in questions:
+        question_id = question.get("id")
+        selected_index = answers.get(question_id)
+        try:
+            selected_index = int(selected_index)
+        except (TypeError, ValueError):
+            selected_index = -1
+
+        correct_index = question.get("correct_index", -1)
+        is_correct = selected_index == correct_index
+        if is_correct:
+            score += 1
+
+        options = question.get("options", [])
+        selected_text = options[selected_index] if 0 <= selected_index < len(options) else "Not answered"
+        correct_text = options[correct_index] if 0 <= correct_index < len(options) else ""
+        details.append(
+            {
+                "id": question_id,
+                "is_correct": is_correct,
+                "selected_index": selected_index,
+                "correct_index": correct_index,
+                "selected": selected_text,
+                "correct": correct_text,
+                "explanation": question.get("explanation", ""),
+            }
+        )
+
+    return {
+        "score": score,
+        "total": total,
+        "percentage": round((score / total) * 100, 2) if total else 0,
+        "results": details,
+    }
