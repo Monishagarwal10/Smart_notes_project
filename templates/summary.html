@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary Workspace | Smart Note Taker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="top-nav">
+    <div class="nav-wrap container">
+        <div class="brand">Smart Note Taker</div>
+        <nav class="nav-links page-links">
+            <a href="/">Home</a>
+            <a href="/summary">Summary</a>
+            <a href="/mindmap">Mind Map</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container page-main">
+    <section class="card-panel">
+        <h2>Summary Center</h2>
+        <p class="section-subtitle">Switch between whole document, module-wise, chapter-wise, and topic-wise summaries.</p>
+        <div class="button-row">
+            <button class="btn btn-secondary filter-btn active" data-filter="all">All Sections</button>
+            <button class="btn btn-secondary filter-btn" data-filter="module">Modules</button>
+            <button class="btn btn-secondary filter-btn" data-filter="chapter">Chapters</button>
+            <button class="btn btn-secondary filter-btn" data-filter="topic">Topics</button>
+        </div>
+        <div class="inline-form">
+            <select id="sectionSelect"></select>
+            <button id="viewWhole" class="btn btn-primary">Show Whole Document Summary</button>
+            <a href="/mindmap" class="btn btn-secondary">Open Mind Map Page</a>
+        </div>
+    </section>
+
+    <section class="result-grid summary-page-grid">
+        <article class="result-card summary-card">
+            <h3 id="summaryTitle">No summary available</h3>
+            <p id="summaryParagraph" class="summary-paragraph">Process notes first from the home page.</p>
+            <div id="summaryPoints" class="keypoint-list"></div>
+        </article>
+        <article class="result-card">
+            <h3>Keywords</h3>
+            <div id="keywordChips" class="chip-wrap"></div>
+        </article>
+    </section>
+</main>
+
+<script src="{{ url_for('static', filename='js/summary.js') }}"></script>
+</body>
+</html>

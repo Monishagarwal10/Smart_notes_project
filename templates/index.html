@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Note Taker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="top-nav" id="home">
+    <div class="nav-wrap container">
+        <div class="brand">Smart Note Taker</div>
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <nav id="navMenu" class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#pdf-notes">PDF Notes</a>
+            <a href="#live-lecture">Live Lecture</a>
+            <a href="#mind-map">Mind Map</a>
+            <a href="#saved-notes">Saved Notes</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <div>
+            <p class="badge-text">AI-Powered Learning Assistant</p>
+            <h1>Turn study material into summaries, keywords, and concept maps.</h1>
+            <p class="hero-subtitle">
+                Upload PDFs, capture live lecture audio, or type manual notes. The system processes each input
+                into structured learning outputs and an interactive mind map.
+            </p>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <h2>Core Features</h2>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <h3>PDF Notes Processor</h3>
+                <p>Extract content from documents and transform it into concise learning material.</p>
+                <a href="#pdf-notes" class="btn btn-outline">Use Feature</a>
+            </article>
+            <article class="feature-card">
+                <h3>Live Lecture Notes</h3>
+                <p>Capture speech in real-time using your microphone and process lecture transcripts.</p>
+                <a href="#live-lecture" class="btn btn-outline">Use Feature</a>
+            </article>
+            <article class="feature-card">
+                <h3>Text Note Summarizer</h3>
+                <p>Paste notes and instantly convert them into key ideas and bullet-point summaries.</p>
+                <a href="#manual-notes" class="btn btn-outline">Use Feature</a>
+            </article>
+            <article class="feature-card">
+                <h3>Keyword Extractor</h3>
+                <p>Identify important concepts with explainable TF-IDF style keyword scoring.</p>
+                <a href="#results" class="btn btn-outline">Use Feature</a>
+            </article>
+            <article class="feature-card">
+                <h3>Mind Map Generator</h3>
+                <p>Visualize concept relationships through an interactive, zoomable mind map graph.</p>
+                <a href="#mind-map" class="btn btn-outline">Use Feature</a>
+            </article>
+            <article class="feature-card">
+                <h3>Saved Notes / History</h3>
+                <p>Store, reload, and continue learning sessions with full result preservation.</p>
+                <a href="#saved-notes" class="btn btn-outline">Use Feature</a>
+            </article>
+            <article class="feature-card">
+                <h3>Export / Download</h3>
+                <p>Download summaries, keyword JSON, complete session packages, and mind map images.</p>
+                <a href="#export-tools" class="btn btn-outline">Use Feature</a>
+            </article>
+        </div>
+    </section>
+
+    <section id="pdf-notes" class="section card-panel">
+        <h2>PDF Upload and Processing</h2>
+        <p class="section-subtitle">Upload text-based PDFs to extract raw text, summaries, keywords, and concepts.</p>
+        <form id="pdfForm" class="inline-form" enctype="multipart/form-data">
+            <input type="file" id="pdfFile" name="pdf" accept=".pdf">
+            <button type="submit" class="btn btn-primary">Upload and Process PDF</button>
+        </form>
+        <p id="pdfWarning" class="warning-text"></p>
+    </section>
+
+    <section id="live-lecture" class="section card-panel">
+        <h2>Live Lecture Notes</h2>
+        <p class="section-subtitle">Use microphone capture mode for live classes, webinars, or recorded lectures playing on your device.</p>
+        <div class="button-row">
+            <button id="startSpeech" class="btn btn-primary">Start Live Lecture Notes</button>
+            <button id="stopSpeech" class="btn btn-danger">Stop</button>
+            <button id="processSpeech" class="btn btn-secondary">Process Transcript</button>
+        </div>
+        <textarea id="speechTranscript" rows="7" placeholder="Live transcript will appear here..."></textarea>
+    </section>
+
+    <section id="manual-notes" class="section card-panel">
+        <h2>Manual Notes Input</h2>
+        <p class="section-subtitle">Paste or type notes, then run the full notes-to-knowledge pipeline.</p>
+        <input id="manualTitle" type="text" placeholder="Session Title (optional)">
+        <textarea id="manualText" rows="8" placeholder="Type your study notes here..."></textarea>
+        <button id="processText" class="btn btn-primary">Process Manual Notes</button>
+    </section>
+
+    <section id="results" class="section card-panel">
+        <h2>Results Workspace</h2>
+        <p class="section-subtitle">After processing, you will be redirected to a dedicated Summary page. You can then open the Mind Map page with topic-wise controls.</p>
+        <div class="result-grid">
+            <article class="result-card summary-card">
+                <h3>Processing Preview</h3>
+                <div class="summary-title-wrap">
+                    <h4 id="summaryTitle">No content processed yet</h4>
+                    <span id="summaryMeta" class="summary-meta">Waiting for input</span>
+                </div>
+                <p id="summaryParagraph" class="summary-paragraph">Process PDF/manual/live lecture input to generate whole-document and section-wise summaries.</p>
+                <div id="summaryPoints" class="keypoint-list"></div>
+                <div class="button-row">
+                    <a href="/summary" class="btn btn-secondary">Open Summary Page</a>
+                    <a href="/mindmap" class="btn btn-secondary">Open Mind Map Page</a>
+                </div>
+            </article>
+
+            <article class="result-card">
+                <h3>Keywords</h3>
+                <p class="section-subtitle">Ranked by explainable TF-IDF style score</p>
+                <div id="keywordChips" class="chip-wrap"></div>
+            </article>
+        </div>
+    </section>
+
+    <section id="mind-map" class="section card-panel">
+        <h2>Concept Mind Map</h2>
+        <p class="section-subtitle">Interactive concept map with zoom, pan, and relationship links.</p>
+        <div id="mindmapCanvas"></div>
+    </section>
+
+    <section id="saved-notes" class="section card-panel">
+        <h2>Saved Notes / History</h2>
+        <div class="button-row">
+            <button id="saveSession" class="btn btn-primary">Save Current Session</button>
+            <button id="refreshSessions" class="btn btn-secondary">Refresh History</button>
+        </div>
+        <div id="sessionList" class="session-list"></div>
+    </section>
+
+    <section id="export-tools" class="section card-panel">
+        <h2>Export and Download</h2>
+        <div class="button-row">
+            <button id="exportSummaryTxt" class="btn btn-secondary">Export Summary (.txt)</button>
+            <button id="exportSummaryPdf" class="btn btn-secondary">Export Summary (.pdf)</button>
+            <button id="exportKeywords" class="btn btn-secondary">Export Keywords (.json)</button>
+            <button id="exportFull" class="btn btn-secondary">Export Full Package (.json)</button>
+            <button id="exportMindmapPng" class="btn btn-secondary">Export Mind Map Image (.png)</button>
+        </div>
+    </section>
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

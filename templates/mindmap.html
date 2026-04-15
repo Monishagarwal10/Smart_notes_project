@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Map Workspace | Smart Note Taker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="top-nav">
+    <div class="nav-wrap container">
+        <div class="brand">Smart Note Taker</div>
+        <nav class="nav-links page-links">
+            <a href="/">Home</a>
+            <a href="/summary">Summary</a>
+            <a href="/mindmap">Mind Map</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container page-main">
+    <section class="card-panel">
+        <h2>Mind Map Center</h2>
+        <p class="section-subtitle">Generate mind maps for full document or selected module/chapter/topic.</p>
+        <div class="inline-form">
+            <select id="mindmapSectionSelect"></select>
+            <button id="renderSelectedMap" class="btn btn-primary">Generate Selected Mind Map</button>
+            <button id="renderWholeMap" class="btn btn-secondary">Generate Whole Document Mind Map</button>
+            <button id="toggleFullscreen" class="btn btn-secondary">Maximize</button>
+        </div>
+    </section>
+
+    <section class="card-panel map-panel">
+        <div class="map-controls-overlay">
+            <button id="minimizeOverlayBtn" class="btn btn-secondary">Minimize</button>
+            <span class="map-hint">Press Esc to exit fullscreen</span>
+        </div>
+        <div id="mindmapCanvas" class="mindmap-view"></div>
+    </section>
+</main>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="{{ url_for('static', filename='js/mindmap.js') }}"></script>
+</body>
+</html>

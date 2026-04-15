@@ -1,0 +1,742 @@
+[
+  {
+    "id": "8c8d5e37-59be-4ff8-bd23-a07f59f64dbf",
+    "title": "Manual Notes",
+    "source_type": "text",
+    "raw_text": "6. Explain in brief 802.11 Architecture and Protocol Stack \n1. DefiniƟon / IntroducƟon\nIEEE 802.11 is the standard used for Wireless Local Area Networks (WLANs), commonly known as \nWi-Fi. It defines how wireless devices communicate over radio waves and specifies the architecture \nand protocol layers used for wireless communicaƟon.\n2. Main Body (Detailed & Pointwise) \nA. 802.11 Architecture \nThe 802.11 architecture defines how wireless devices are organized and communicate within a \nwireless network. \n1. StaƟon (STA)\no A staƟon is any device that supports the 802.11 protocol. \no Examples include laptops, smartphones, and tablets with Wi-Fi capability. \n2. Access Point (AP)\no An Access Point is a device that connects wireless staƟons to a wired network.\no It acts as a central communicaƟon point for wireless devices. \n3. Basic Service Set (BSS)\no A BSS is the basic building block of an 802.11 network. \no It consists of one Access Point and mulƟple wireless staƟons. \n4. Extended Service Set (ESS)\no MulƟple BSS networks connected together form an ESS. \no It allows users to move between access points while staying connected. \n5. DistribuƟon System (DS)\no The distribuƟon system connects mulƟple access points.\no Usually implemented using wired Ethernet networks. \n6. Portal\no A portal connects the wireless network to other networks such as the Internet. \nB. 802.11 Protocol Stack \nThe 802.11 protocol stack defines the layers used for wireless communicaƟon.\n1. Physical Layer (PHY)\no Responsible for transmiƫng and receiving signals through radio waves. \no Defines frequency bands, modulaƟon techniques, and data transmission rates.\n2. MAC Layer (Medium Access Control)\no Controls how devices access the wireless medium. \no Handles frame transmission, error detecƟon, and collision avoidance. \n3. Logical Link Control (LLC)\no Provides interface between the MAC layer and higher network layers. \no Ensures proper data flow between devices. \n4. Higher Layers (Network, Transport, ApplicaƟon)\no These layers handle rouƟng, data transport, and applicaƟons such as web browsing \nand email. \n3. Example \nA home Wi-Fi network where smartphones and laptops connect to the wireless router (Access \nPoint) using the 802.11 standard is an example of 802.11 architecture. \n4. Conclusion \nThe 802.11 architecture organizes wireless devices using components such as staƟons, access points, \nand service sets, while the protocol stack defines the layers responsible for wireless communicaƟon. \nTogether they enable reliable wireless networking.",
+    "summary": {
+      "key_points": [
+        "802.11 Architecture The 802.11 architecture defines how wireless devices are organized and communicate within a wireless network.",
+        "Access Point (AP) o An Access Point is a device that connects wireless staƟons to a wired network.",
+        "o It acts as a central communicaƟon point for wireless devices.",
+        "o It consists of one Access Point and mulƟple wireless staƟons.",
+        "802.11 Protocol Stack The 802.11 protocol stack defines the layers used for wireless communicaƟon."
+      ],
+      "paragraph": "802.11 Architecture The 802.11 architecture defines how wireless devices are organized and communicate within a wireless network. Access Point (AP) o An Access Point is a device that connects wireless staƟons to a wired network. o It acts as a central communicaƟon point for wireless devices.",
+      "title": "Wireless • Access • Network"
+    },
+    "keywords": [
+      {
+        "score": 18.0885,
+        "term": "wireless"
+      },
+      {
+        "score": 12.4738,
+        "term": "access"
+      },
+      {
+        "score": 10.3003,
+        "term": "network"
+      },
+      {
+        "score": 9.1358,
+        "term": "architecture"
+      },
+      {
+        "score": 9.1358,
+        "term": "protocol"
+      },
+      {
+        "score": 9.1358,
+        "term": "devices"
+      },
+      {
+        "score": 9.1358,
+        "term": "layers"
+      },
+      {
+        "score": 9.1358,
+        "term": "sta"
+      },
+      {
+        "score": 7.9085,
+        "term": "defines"
+      },
+      {
+        "score": 7.9085,
+        "term": "point"
+      },
+      {
+        "score": 6.6062,
+        "term": "stack"
+      },
+      {
+        "score": 6.6062,
+        "term": "networks"
+      },
+      {
+        "score": 6.6062,
+        "term": "communica"
+      },
+      {
+        "score": 6.6062,
+        "term": "ons"
+      },
+      {
+        "score": 5.2111,
+        "term": "used"
+      }
+    ],
+    "mindmap": {
+      "edges": [
+        {
+          "from": "topic",
+          "to": "kw_1",
+          "id": "51f5a5c6-6dd6-47a4-b49c-5a874c174c32"
+        },
+        {
+          "from": "topic",
+          "to": "kw_2",
+          "id": "6ab3af6c-6d15-4404-b0db-53789f229586"
+        },
+        {
+          "from": "topic",
+          "to": "kw_3",
+          "id": "bfa57e23-9477-479b-b428-e4c3ae8877e4"
+        },
+        {
+          "from": "topic",
+          "to": "kw_4",
+          "id": "80743e1e-2da6-4d3e-962f-5a18dd6f7348"
+        },
+        {
+          "from": "topic",
+          "to": "kw_5",
+          "id": "cd873f27-e83b-4606-bca4-6d4f9f2b921f"
+        },
+        {
+          "from": "topic",
+          "to": "kw_6",
+          "id": "14a314bc-4fb7-443c-bcaa-3655ffe68ae1"
+        },
+        {
+          "from": "topic",
+          "to": "kw_7",
+          "id": "74f2b835-bb85-41e4-a011-17f652b31519"
+        },
+        {
+          "from": "topic",
+          "to": "kw_8",
+          "id": "f5ce1476-fe3d-4d50-9c17-4e5560f3a6ed"
+        },
+        {
+          "from": "topic",
+          "to": "kw_9",
+          "id": "3ed70002-b695-4e73-b248-3f3a20d971ed"
+        },
+        {
+          "from": "topic",
+          "to": "kw_10",
+          "id": "1f69893e-b2c1-441e-afcc-6952f572085d"
+        },
+        {
+          "from": "topic",
+          "to": "kw_11",
+          "id": "94f4e710-89b4-47f4-ba0f-48145dad0b21"
+        },
+        {
+          "from": "topic",
+          "to": "kw_12",
+          "id": "a5601890-b5cc-4a40-a30e-99d289bdd980"
+        },
+        {
+          "from": "kw_6",
+          "label": "5",
+          "to": "kw_1",
+          "id": "b01d5856-02bf-43b9-bd38-01f1799cbe15"
+        },
+        {
+          "from": "kw_2",
+          "label": "5",
+          "to": "kw_1",
+          "id": "02556abd-746e-48fa-bd0d-2db10ae3996c"
+        },
+        {
+          "from": "kw_4",
+          "label": "4",
+          "to": "kw_1",
+          "id": "dab5ea85-4233-4310-aadb-09eef48a9abf"
+        },
+        {
+          "from": "kw_9",
+          "label": "4",
+          "to": "kw_1",
+          "id": "7b8f4a16-7ab7-4b54-9233-8b52bc38eeec"
+        },
+        {
+          "from": "kw_3",
+          "label": "4",
+          "to": "kw_1",
+          "id": "1b7b9ca1-d5ac-45ed-b305-5c86f8add225"
+        },
+        {
+          "from": "kw_10",
+          "label": "4",
+          "to": "kw_1",
+          "id": "2449bf5f-012f-485e-8d80-c842d7a5b579"
+        },
+        {
+          "from": "kw_4",
+          "label": "3",
+          "to": "kw_5",
+          "id": "941fde05-1032-436d-945a-7e266ab0d776"
+        },
+        {
+          "from": "kw_5",
+          "label": "3",
+          "to": "kw_11",
+          "id": "0882942e-331a-43e8-8858-2016abeea93f"
+        },
+        {
+          "from": "kw_5",
+          "label": "3",
+          "to": "kw_1",
+          "id": "b5e32879-5a0f-4f63-a3e7-caeb627b0ea9"
+        },
+        {
+          "from": "kw_7",
+          "label": "3",
+          "to": "kw_1",
+          "id": "899e44a7-72c6-43ea-a019-3b7a48c49978"
+        },
+        {
+          "from": "kw_4",
+          "label": "3",
+          "to": "kw_6",
+          "id": "74f7e0ce-214c-4fa5-b632-c20d2939d496"
+        },
+        {
+          "from": "kw_4",
+          "label": "3",
+          "to": "kw_9",
+          "id": "d49f3371-50ab-4673-bd2a-a8f5161a8f46"
+        },
+        {
+          "from": "kw_7",
+          "label": "3",
+          "to": "kw_5",
+          "id": "9180d672-ed06-4cfa-9564-bcbbab44eef3"
+        },
+        {
+          "from": "kw_9",
+          "label": "3",
+          "to": "kw_5",
+          "id": "6b52ef30-05ad-4288-ab43-f4575df8ef11"
+        },
+        {
+          "from": "kw_9",
+          "label": "3",
+          "to": "kw_6",
+          "id": "c24c3da2-6db7-4660-b8a3-ce65a5df90f8"
+        },
+        {
+          "from": "kw_9",
+          "label": "3",
+          "to": "kw_7",
+          "id": "389b9cbb-f050-4d2b-8f38-34c947e90e96"
+        },
+        {
+          "from": "kw_8",
+          "label": "3",
+          "to": "kw_1",
+          "id": "014e3e28-9c55-4893-b1e1-417dc8e105d3"
+        },
+        {
+          "from": "kw_2",
+          "label": "3",
+          "to": "kw_8",
+          "id": "c3f67885-9586-41b2-b0b7-1bdbf28fee71"
+        },
+        {
+          "from": "kw_2",
+          "label": "3",
+          "to": "kw_10",
+          "id": "6901dc91-5f19-487c-a7f2-faecd6f8bad2"
+        },
+        {
+          "from": "kw_4",
+          "label": "2",
+          "to": "kw_11",
+          "id": "7371057c-7ab6-45a2-8acc-d35eb6e5bf67"
+        }
+      ],
+      "nodes": [
+        {
+          "group": "topic",
+          "id": "topic",
+          "label": "Wireless Access Network",
+          "level": 0
+        },
+        {
+          "group": "keyword",
+          "id": "kw_1",
+          "label": "Wireless",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_2",
+          "label": "Access",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_3",
+          "label": "Network",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_4",
+          "label": "Architecture",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_5",
+          "label": "Protocol",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_6",
+          "label": "Devices",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_7",
+          "label": "Layers",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_8",
+          "label": "Sta",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_9",
+          "label": "Defines",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_10",
+          "label": "Point",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_11",
+          "label": "Stack",
+          "level": 1
+        },
+        {
+          "group": "keyword",
+          "id": "kw_12",
+          "label": "Networks",
+          "level": 1
+        }
+      ]
+    },
+    "saved_at": "2026-04-13T17:43:32"
+  },
+  {
+    "id": "1c372503-d3fb-4030-bd18-c723328461e2",
+    "title": "CN MIDSEMM.pdf",
+    "source_type": "pdf",
+    "raw_text": "1.Compare Connec tion oriented and Connec tionless Protocols in Computer \nnetwork. \n \nBasis Connection-Oriented Protocol Connectionless Protocol  \nConnection \nSetup A connection must be established before \ndata transmission begins. No connec tion is established before \nsending data. \nReliability  Provides reliable communica tion and ensures \ndata is delivered correctly. Does not guarantee reliable delivery \nof packets. \nData Transfer  Data is sent in a con tinuous sequence a Ōer \nconnection establishment.  Data is sent as independent packets \ncalled datagrams. \nError Control  Includes error detec tion and correc tion \nmechanisms. Error control is generally not \nprovided. \nFlow Control  Flow control mechanisms are used to \nregulate data transmission. Flow control is usually not \nimplemented. \nPacket Order  Packets are delivered in the same order as \nsent. Packets may arrive out of order. \nOverhead  Higher overhead due to connec tion setup \nand management. Lower overhead because no \nconnection setup is required.  \nExamples  TCP (Transmission Control Protocol)  UDP (User Datagram Protocol)  \n \n \n2)Explain the Applica tions of Computer Networks  \n1. Definition / Introduc tion \nComputer networks are used to connect mul tiple computers and devices together  so that they can \ncommunicate, share data, and share resources efficiently. Networks play an important role in \nbusinesses, educa tion, communica tion, and daily life.  \n \n2. Main Body (Detailed & Pointwise) \n1. Resource Sharing \n One of the major applica tions of computer networks is sharing hardware and so Ōware \nresources  among mul tiple users.  \n Devices such as printers, scanners, and storage devices  can be shared by many computers \nconnected to the same network. \n This reduces cost and improves efficiency because the same resource can be used by many \nusers. \n2. Communica tion \n Networks allow people to communicate easily and quickly  with others across the world. \n Communica tion can take place through email, messaging, video conferencing, and voice \ncalls. \n It helps organiza tions and individuals exchange informa tion instantly.  \n3. Data and File Sharing \n Computer networks enable users to share files, documents, and databases  between \ndifferent computers. \n Employees in an organiza tion can access and update the same data stored on a central \nserver. \n This makes collabora tion easier and improves produc tivity. \n4. Access to Remote Informa tion \n Networks allow users to access informa tion from remote computers or servers  located \nanywhere in the world. \n The Internet is the best example where people can access websites, research materials, and \nonline services. \n This makes informa tion easily available to everyone.  \n5. Entertainment and Mul timedia \n Computer networks are widely used for online entertainment . \n Users can watch movies, listen to music, play online games, and stream videos using network \nconnections. \n Services like online gaming and streaming pla ƞorms depend heavily on networks.  \n6. E-Commerce and Online Services \n Networks enable online shopping, banking, ticket booking, and digital payments . \n Businesses use computer networks to sell products and services through websites. \n Customers can buy goods and services from anywhere using the Internet. \n \n3. Example \nFor example, in a college network , students can access study materials from a server, share files with \nclassmates, and use a shared printer through the network. \n \n4. Conclusion \nComputer networks are essen tial in modern life because they enable communica tion, resource \nsharing, and access to informa tion. They support many ac tivities such as educa tion, business \noperations, and online services.  \n \n \n3)Describe the Different Network Hardware used in Computer Networks \n1. Definition / Introduc tion \nNetwork hardware refers to the physical devices used to connect computers and other devices in a \nnetwork. These devices help in transmi ƫng data and enabling communica tion between different \nsystems. \n \n2. Main Body (Detailed & Pointwise) \n1. Network Interface Card (NIC) \n A Network Interface Card  is a hardware component that allows a computer to connect to a \nnetwork. \n It provides a physical interface between the computer and the network cable or wireless \nnetwork. \n Each NIC has a unique MAC address  used for iden tifying the device on the network.  \n2. Hub \n A Hub is a simple networking device used to connect mul tiple computers in a LAN.  \n It receives data from one device and broadcasts it to all other connected devices . \n Hubs operate at the physical layer  of the network and do not filter or manage traffic. \n3. Switch \n A Switch connects mul tiple devices within a network and improves network performance.  \n Unlike hubs, a switch sends data only to the intended device  using MAC addresses. \n It helps reduce network traffic and improves communica tion efficiency.  \n4. Router  \n A Router is used to connect different networks together.  \n It forwards data packets between networks  based on IP addresses.  \n Routers are commonly used to connect local networks to the Internet . \n5. Bridge \n A Bridge is used to connect two similar network segments.  \n It filters traffic based on MAC addresses  and forwards data only when necessary.  \n Bridges help in reducing network conges tion. \n6. Gateway  \n A Gateway is a device that connects two different networks that use different protocols . \n It acts as a translator  between different network systems.  \n Gateways are o Ōen used to connect LANs with other types of networks . \n7. Modem  \n A Modem (Modulator-Demodulator)  is used to connect a computer or network to the \nInternet. \n It converts digital signals from a computer into analog signals  for transmission over \ntelephone lines and vice versa.  \n Modems are commonly used in home Internet connec tions. \n \n3. Example  \nFor example, in a home network, a router connects mul tiple devices like laptops and smartphones \nto the Internet , while a NIC in each device allows it to communicate with the network . \n \n4. Conclusion  \nNetwork hardware devices such as NICs, hubs, switches, routers, bridges, gateways, and modems  \nplay an important role in establishing communica tion between computers and ensuring efficient data \ntransfer in a network.  \n \n4)Differen tiate between OSI and TCP/IP model.  \nBasis OSI Model  TCP/IP Model  \nFull Form  Open Systems Interconnec tion Model  Transmission Control Protocol / \nInternet Protocol Model  \nNumber of \nLayers Consists of 7 layers. Consists of 4 layers. \nLayers Physical, Data Link, Network, Transport, \nSession, Presenta tion, Applica tion. Network Interface, Internet, \nTransport, Applica tion. \n\nBasis OSI Model TCP/IP Model \nDevelopment  Developed by ISO (Interna tional \nOrganization for Standardiza tion). Developed by DARPA (U.S. \nDepartment of Defense) . \nConcept It is a reference model  mainly used for \nunderstanding network communica tion. It is a practical model  used in real-\nworld networking and the Internet. \nLayer Structure  Clearly separates services, interfaces, and \nprotocols . Does not clearly dis tinguish between \nthese concepts. \nUse Mainly used for educational and \nconceptual purposes . Widely used in actual network \ncommunica tion and Internet \nprotocols . \nProtocol \nDependency  Protocol independent model. Based on standard protocols such as \nTCP and IP . \n \n \n5)Explain Network So Ōware with respect to Protocol Hierarchy and Design \nIssues for Layers \n1. Definition / Introduc tion \nNetwork so Ōware refers to the set of programs and protocols that control communica tion between \ncomputers in a network . To simplify communica tion, network so Ōware is organized in the form of \nlayers known as protocol hierarchy . \n \n2. Main Body (Detailed & Pointwise) \n1. Protocol Hierarchy \n In computer networks, communica tion tasks are divided into multiple layers , where each \nlayer performs a specific func tion. \n This layered structure is known as protocol hierarchy . \n Each layer provides services to the layer above it  and receives services from the layer below \nit. \n2. Purpose of Layering \n Layering helps in reducing complexity  in network design. \n Each layer can be developed and modified independently  without affec ting other layers.  \n It also helps in standardiza tion and easier troubleshoo ting of network problems. \n3. Communica tion between Layers  \n Communica tion occurs between corresponding layers of different computers  using \nprotocols. \n Data passes down through the layers at the sender side  and up through the layers at the \nreceiver side . \n Each layer adds its own control informa tion (headers)  to the data. \n4. Design Issues for Layers \nWhen designing network layers, several important issues must be considered: \n Addressing:  Each device in a network must have a unique address to iden tify the sender and \nreceiver. \n Error Control:  Mechanisms should be provided to detect and correct errors during data \ntransmission. \n Flow Control:  The system should ensure that the sender does not send data faster than the \nreceiver can process it. \n Routing: The network must determine the best path for data to travel from source to \ndestination. \n Multiplexing: Multiple communica tion sessions should be allowed to use the same network \nresources efficiently.  \n5. Advantages of Protocol Hierarchy  \n It provides organized communica tion structure . \n It simplifies network development and maintenance . \n It allows different vendors to develop compa tible networking systems . \n \n3. Example  \nFor example, in the OSI model , communica tion is divided into seven layers , where each layer \nperforms specific networking func tions. \n     \n     Unit 2 \n6. Explain in brief 802.11 Architecture and Protocol Stack  \n1. Definition / Introduc tion \nIEEE 802.11  is the standard used for Wireless Local Area Networks (WLANs) , commonly known as \nWi-Fi. It defines how wireless devices communicate over radio waves and specifies the architecture \nand protocol layers used for wireless communica tion. \n \n2. Main Body (Detailed & Pointwise)  \nA. 802.11 Architecture  \nThe 802.11 architecture  defines how wireless devices are organized and communicate within a \nwireless network.  \n1. Station (STA) \no A station is any device that supports the 802.11 protocol.  \no Examples include laptops, smartphones, and tablets with Wi-Fi capability.  \n2. Access Point (AP)  \no An Access Point  is a device that connects wireless sta tions to a wired network.  \no It acts as a central communica tion point for wireless devices.  \n3. Basic Service Set (BSS)  \no A BSS is the basic building block of an 802.11 network.  \n\no It consists of one Access Point and mul tiple wireless sta tions. \n4. Extended Service Set (ESS)  \no Multiple BSS networks connected together form an ESS. \no It allows users to move between access points while staying connected . \n5. Distribution System (DS)  \no The distribution system  connects mul tiple access points.  \no Usually implemented using wired Ethernet networks . \n6. Portal \no A portal connects the wireless network to other networks such as the Internet. \n \nB. 802.11 Protocol Stack \nThe 802.11 protocol stack  defines the layers used for wireless communica tion. \n1. Physical Layer (PHY)  \no Responsible for transmiƫng and receiving signals through radio waves . \no Defines frequency bands, modula tion techniques, and data transmission rates.  \n2. MAC Layer (Medium Access Control)  \no Controls how devices access the wireless medium. \no Handles frame transmission, error detec tion, and collision avoidance . \n3. Logical Link Control (LLC)  \no Provides interface between the MAC layer and higher network layers . \no Ensures proper data flow between devices. \n4. Higher Layers (Network, Transport, Applica tion) \no These layers handle routing, data transport, and applica tions such as web browsing \nand email. \n \n3. Example \nA home Wi-Fi network  where smartphones and laptops connect to the wireless router (Access \nPoint) using the 802.11 standard  is an example of 802.11 architecture. \n \n4. Conclusion \nThe 802.11 architecture  organizes wireless devices using components such as sta tions, access points, \nand service sets, while the protocol stack  defines the layers responsible for wireless communica tion. \nTogether they enable reliable wireless networking. \n \n \n \n \n \n8. Compare Token Ring and FDDI with their Frame Format  \n1. Definition / Introduc tion \nToken Ring  and FDDI (Fiber Distributed Data Interface)  are LAN technologies that use a token \npassing method  to control access to the network. In this method, a special frame called a token \ncirculates in the network and only the device holding the token can transmit data.  \n \n2. Main Body (Comparison in Tabular Form)  \nBasis Token Ring  FDDI \nStandard Defined by IEEE 802.5  standard.  Based on ANSI standard  for high-\nspeed networks.  \nTransmission \nMedium Uses twisted pair cable . Uses optical fiber cable . \nSpeed Typical speed is 4 Mbps or 16 Mbps . Provides higher speed up to 100 \nMbps. \nNetwork \nStructure  Uses a ring topology  where devices are \nconnected in a circular form.  Uses dual ring topology  (primary and \nsecondary ring).  \nToken Passing  A single token circulates in the ring and the \nstation with the token can transmit data.  Also uses token passing , but supports \nhigher reliability with dual rings.  \nReliability  Less reliable compared to FDDI.  More reliable due to dual ring \nstructure for fault tolerance . \nCost Relatively less expensive . More expensive  due to fiber op tic \ntechnology.  \n \nFrame Format  \nToken Ring Frame Format  \nThe Token Ring frame contains the following fields:  \n Start Delimiter (SD):  Indicates the start of the frame.  \n\n Access Control (AC):  Controls token passing and priority. \n Frame Control (FC):  Specifies whether the frame contains data or control informa tion. \n Destination Address (DA):  Address of the receiving sta tion. \n Source Address (SA):  Address of the sending sta tion. \n Data: Actual data being transmi Ʃed. \n Frame Check Sequence (FCS):  Used for error detec tion. \n End Delimiter (ED):  Indicates the end of the frame. \n Frame Status (FS):  Shows whether the frame was received successfully. \nFDDI Frame Format \nThe FDDI frame consists of the following fields: \n Preamble:  Used for synchroniza tion. \n Start Delimiter (SD):  Indicates the start of the frame. \n Frame Control (FC):  Defines the frame type. \n Destination Address (DA):  Address of the receiver. \n Source Address (SA):  Address of the sender. \n Data: Contains the informa tion being transmi Ʃed. \n Frame Check Sequence (FCS):  Used for error detec tion. \n End Delimiter (ED):  Indicates the end of the frame. \n \n \n9. Write a short note on: Wi-MAX and RFID \nA) Wi-MAX \n1. Definition / Introduc tion \nWi-MAX (Worldwide Interoperability for Microwave Access)  is a wireless communica tion \ntechnology used to provide high-speed broadband internet over long distances . It is based on the \nIEEE 802.16 standard . \n2. Main Body (Detailed & Pointwise) \n1. Wireless Broadband Technology  \no Wi-MAX provides high-speed wireless internet access  to large areas. \no It can cover cities, towns, and rural areas  where wired networks are difficult to \ninstall. \n2. Long Range Communica tion \no Wi-MAX can provide connec tivity up to 30-50 kilometers  depending on the \nenvironment. \no This makes it useful for metropolitan area networks (MANs) . \n3. High Data Transfer Speed  \no It supports high data transmission rates , enabling fast internet services. \no It is suitable for video streaming, VoIP, and broadband services . \n4. Architecture  \no A Wi-MAX network consists of base stations and subscriber sta tions. \no The base sta tion provides wireless connec tivity to mul tiple users.  \n5. Advantages  \no Wide coverage area \no High bandwidth \no Useful in areas without wired infrastructure \n3. Example \nProviding wireless broadband internet to rural areas  using Wi- MAX base sta tions. \n4. Conclusion \nWi-MAX is an important broadband wireless technology  that provides high-speed internet access \nover large distances. \n \nB) RFID \n1. Definition / Introduc tion \nRFID (Radio Frequency Iden tification) is a technology used to identify and track objects using radio \nwaves. It uses special tags a Ʃached to objects and a reader device to detect them.  \n2. Main Body (Detailed & Pointwise) \n1. Components of RFID System  \no An RFID system mainly consists of RFID tags, RFID reader, and antenna . \no These components work together to iden tify objects.  \n2. RFID Tag \no A tag contains a microchip and antenna . \no It stores informa tion about the object to which it is a Ʃached. \n3. RFID Reader  \no The reader sends radio signals  to detect the RFID tag. \no It receives data from the tag and transfers it to the computer system. \n4. Wireless Iden tification \no RFID does not require direct contact or line of sight  to read the tag. \no Multiple tags can be read at the same time. \n5. Advantages  \no Fast identification \no Automatic tracking  \no Improved inventory management \n3. Example \nRFID is commonly used in inventory management in warehouses and libraries  to track items. \n4. Conclusion \nRFID technology enables automatic identification and tracking of objects  using radio signals and is \nwidely used in many industries. \n \n \n10. Compare the Wireless Technologies: Bluetooth, Wi-Fi, and Wi-MAX \n1. Definition / Introduc tion \nBluetooth, Wi-Fi, and Wi-MAX  are wireless communica tion technologies used to connect devices \nwithout cables. They differ in range, speed, coverage area, and applica tions. \n \n2. Main Body (Comparison in Tabular Form) \nBasis Bluetooth  Wi-Fi Wi-MAX \nStandard IEEE 802.15.1 IEEE 802.11 IEEE 802.16 \nCoverage \nRange Very short range (about 10 \nmeters) Medium range (about \n100 meters ) Very long range (up to 30-\n50 km) \nData Speed  Low data transfer rate High data transfer rate Very high broadband speed  \nNetwork Type  Personal Area Network \n(PAN) Local Area Network ( LAN) Metropolitan Area Network \n(MAN) \nBasis Bluetooth Wi-Fi Wi-MAX \nPower \nConsump tion Very low power  Moderate power \nconsumption Higher power consump tion \nDevices \nConnected  Connects devices like \nheadphones, keyboards, \nsmartphones  Connects laptops, \nsmartphones, routers, \ntablets Connects large areas such \nas cities and rural \nbroadband networks  \nMain Use  Short-range device \ncommunica tion Wireless internet access \nin homes, offices, and \ncampuses Broadband wireless \ninternet for large areas \n \n3. Example \n Bluetooth:  Connecting wireless headphones to a smartphone.  \n Wi-Fi: Using a wireless router to access the internet in a home or college. \n Wi-MAX:  Providing broadband internet to a city or rural area. \n \nUnit 3 \n \n11. What is Framing in Network? Explain Byte Stuffing and Byte Count \nFraming Methods. \n1. Definition / Introduc tion \nFraming is a technique used in the Data Link Layer  to divide the con tinuous stream of bits received \nfrom the network layer into smaller units called frames . These frames are transmi Ʃed over the \nnetwork so that the receiver can correctly iden tify the start and end of each data unit . \n2. Main Body \nFraming \n The data link layer breaks the stream of bits into manageable frames  for transmission. \n Each frame contains header, data, and trailer fields  which help in addressing and error \ndetection. \n Framing helps the receiver synchronize with the sender and correctly interpret the data . \nByte Count Method \n In this method, the header of the frame contains a field that specifies the number of bytes \nin the frame . \n The receiver reads this byte count to determine where the frame begins and where it ends . \n This method is simple and easy to implement . \n However, if the byte count field gets corrupted during transmission , the receiver may lose \nsynchroniza tion and may not correctly iden tify the frame boundary.  \nByte Stuffing Method \n In this method, frames start and end with a special flag byte . \n If the same flag byte appears in the data por tion, an escape byte (ESC)  is inserted before it. \n At the receiving end, the escape byte is removed to restore the original data. \n This technique ensures that special flag bytes inside the data are not mistaken as frame \nboundaries . \n3. Example \nFor example, if the flag byte is 01111110 , the sender inserts an escape character before the same \npaƩern appearing in the data field . \n4. Conclusion \nFraming is essen tial for organizing transmi Ʃed data into structured units , allowing the receiver to \nidentify frame boundaries and process the data correctly.  \n \n \n \n12. Discuss Error Detec tion and Correc tion Codes  \n1. Definition / Introduc tion \nError detec tion and correc tion codes are techniques used in computer networks to identify and \ncorrect errors  that may occur during data transmission due to noise or interference.  \n2. Main Body  \nError Detec tion Codes  \nThese techniques help the receiver determine whether the received data contains errors . \n1. Parity Check  \n A parity bit  is added to the data bits to make the total number of 1s either even or odd . \n If the number of bits changes during transmission, the receiver detects an error.  \n It is simple but can detect only single-bit errors . \n2. Checksum  \n The data is divided into fixed-size segments  and added together.  \n The result is transmi Ʃed as a checksum value  along with the data.  \n The receiver calculates the checksum again and compares it with the received value to \ndetect errors.  \n3. Cyclic Redundancy Check (CRC)  \n CRC uses binary division with a generator polynomial . \n The remainder obtained a Ōer division is added to the frame before transmission.  \n At the receiver side, the same calcula tion is performed to check whether the data has been \naltered. \nError Correc tion Codes  \n These codes not only detect errors but also correct them automa tically. \n One common technique is Hamming Code , which can locate the posi tion of an error and \ncorrect it.  \n3. Example  \nHamming code  can detect and correct single-bit errors  in transmi Ʃed data. \n4. Conclusion  \n\nError detec tion and correc tion techniques help maintain data integrity and reliable communica tion \nin computer networks. \n \n \n13. Describe and Illustrate Byte Count and Bit Stuffing Framing Method \n1. Definition / Introduc tion \nIn computer networks, framing methods  such as byte count and bit stuffing  are used to iden tify the \nstart and end of frames  during data transmission. \n2. Main Body \nByte Count Method \n In this method, the first field of the frame header contains the length of the frame . \n This length specifies the number of bytes present in the frame . \n The receiver reads this value and counts the number of bytes to determine the end of the \nframe. \n The method is simple but if the length field is corrupted, the frame boundary becomes \nincorrect. \nBit Stuffing Method \n In this technique, frames are separated by special flag bits . \n A common flag pa Ʃern used is 01111110 . \n If the sender encounters five consecu tive 1s in the data , it automa tically inserts a 0 bit aŌer \nthem. \n This prevents the data from being mistaken as a flag sequence. \n The receiver removes the extra inserted bits to restore the original data. \n3. Example \nIf the data contains 011111, the sender inserts a 0 bit, making it 0111110. \n4. Conclusion \nBoth byte count and bit stuffing  methods help in iden tifying frame boundaries and ensure correct \ndata transmission in the data link layer. \n \n \n14. Explain Design Issues of Data Link Layer \n1. Definition / Introduc tion \nThe Data Link Layer  is responsible for providing reliable data transfer between two directly \nconnected nodes . Several design issues must be considered to ensure efficient communica tion. \n2. Main Body \n1. Services to Network Layer \n The data link layer provides services to the network layer . \n These services may include unacknowledged connec tionless service, acknowledged \nconnectionless service, and acknowledged connec tion-oriented service . \n2. Framing \n The layer must divide the stream of bits into frames before transmission. \n Framing helps the receiver identify the beginning and end of each message . \n3. Error Control \n Errors may occur due to noise or interference in the communica tion channel . \n The data link layer detects and some times corrects these errors using techniques such as \nCRC or parity check . \n4. Flow Control \n Flow control ensures that the sender does not send data faster than the receiver can \nprocess it . \n Techniques such as Stop-and-Wait protocol  are used for this purpose. \n5. Physical Addressing \n Each frame contains MAC addresses  of the sender and receiver. \n This helps in iden tifying the correct des tination device in the network.  \n3. Example \nIn Ethernet networks , the data link layer uses MAC addresses to deliver frames to the correct \ndevice. \n4. Conclusion \nDesign issues of the data link layer ensure efficient, reliable, and organized data transmission \nbetween devices . \n \n \n15. Explain Ethernet Protocol and its Use in Network with Example \n1. Definition / Introduc tion \nEthernet is one of the most widely used LAN technologies  for connec ting computers in a network. It \nis defined by the IEEE 802.3 standard . \n2. Main Body \nWorking of Ethernet \n Ethernet uses the CSMA/CD (Carrier Sense Mul tiple Access with Collision Detec tion) \nmethod for data transmission. \n Before sending data, a device checks whether the communica tion channel is free . \n If two devices transmit at the same time, a collision occurs , and the devices wait for a \nrandom time before retransmi ƫng. \nFeatures of Ethernet \n Provides high-speed communica tion in local networks. \n Uses MAC addresses  for identifying devices.  \n Supports different data rates such as 10 Mbps, 100 Mbps, and 1 Gbps . \nFrame Structure \n Ethernet frames contain destination address, source address, data field, and error checking \nfield. \n3. Example \nEthernet is commonly used in home and office LAN networks  where computers are connected \nthrough switches and cables . \n4. Conclusion \nEthernet protocol provides reliable and efficient communica tion in local area networks , making it \none of the most popular networking technologies. \n \n \n16. Explain X.25 Protocol with its Frame \n1. Definition / Introduc tion \nX.25 is a packet-switched network protocol  used for communica tion in Wide Area Networks \n(WANs). It was developed by the International Telecommunica tion Union (ITU -T) to provide reliable \ndata transmission over public data networks . X.25 ensures reliable communica tion by using error \ncontrol, flow control, and virtual circuits . \n \n2. Main Body \n1. Characteris tics of X.25 Protocol  \n X.25 is a connection-oriented protocol , which means a connec tion must be established \nbefore data transmission begins. \n Data is transmi Ʃed in the form of small packets  instead of a con tinuous data stream.  \n It provides error detec tion and correc tion mechanisms  to ensure reliable communica tion. \n The protocol works well even on noisy communica tion lines. \n2. Layers in X.25 Protocol \nThe X.25 protocol works mainly at three layers of the OSI model : \n1. Physical Layer  \no Responsible for transmiƫng raw bits  over the communica tion channel.  \no Defines the electrical and mechanical characteris tics of the connec tion. \n2. Data Link Layer  \no Ensures reliable data transfer between two nodes . \no Uses protocols such as LAPB (Link Access Procedure Balanced)  for error control and \nflow control. \n3. Network Layer  \no Responsible for packet rou ting and logical communica tion between the source and \ndestination. \no Manages virtual circuits  and packet delivery. \n3. Virtual Circuits in X.25 \nX.25 communica tion is based on virtual circuits , which provide a logical connec tion between two \ndevices. \nTypes of virtual circuits: \n Switched Virtual Circuit (SVC)  \no A temporary connec tion established for a par ticular communica tion session.  \no It is terminated a Ōer the communica tion is completed.  \n Permanent Virtual Circuit (PVC)  \no A permanent connec tion established between two devices.  \no It remains ac tive continuously. \n4. X.25 Frame Format \nAn X.25 packet (frame) consists of several fields used for communica tion. \nFields of X.25 Frame  \n1. Header \no Contains control and addressing informa tion. \no Identifies the virtual circuit and packet type.  \n2. Logical Channel Iden tifier (LCI) \no Identifies the virtual circuit number  used for communica tion. \n3. Control Field  \no Used for flow control and error management . \n4. Data Field  \no Contains the actual data being transmi Ʃed. \n5. Error Detec tion Field \no Used to detect transmission errors. \nThese fields help ensure that packets are delivered correctly and in sequence . \n \n3. Example \nX.25 networks were widely used in banking systems, airline reserva tion systems, and early packet-\nswitched data networks  because they provided high reliability even over low-quality \ncommunica tion lines. \n \n \n17. Draw the Frame Format for 802.3 Protocol and Explain Func tion of Each \nField \n1. Definition / Introduc tion \nThe IEEE 802.3 protocol  defines the Ethernet frame format  used in local area networks for \ntransmiƫng data between devices.  \n2. Main Body  \nFields of 802.3 Frame  \n1. Preamble  \n A sequence of bits used for synchroniza tion between sender and receiver . \n2. Start Frame Delimiter (SFD)  \n Indicates the start of the frame . \n3. Destination Address  \n Specifies the MAC address of the receiving device . \n4. Source Address  \n Specifies the MAC address of the sending device . \n5. Length Field  \n Indicates the length of the data field  in the frame.  \n6. Data Field  \n Contains the actual data being transmi Ʃed. \n7. Frame Check Sequence (FCS)  \n Used for error detec tion using CRC . \n3. Example  \nIn an Ethernet LAN , when a computer sends data to another computer, the data is transmi Ʃed in the \n802.3 frame format . \n4. Conclusion  \nThe 802.3 frame format organizes data into structured fields, ensuring accurate transmission and \nerror detec tion in Ethernet networks .",
+    "summary": {
+      "key_points": [
+        "No connec tion is established before\nsending data.",
+        "Layers Physical, Data Link, Network, Transport,\nSession, Presenta tion, Applica tion.",
+        "Network Interface, Internet,\nTransport, Applica tion.",
+        "Data: Actual data being transmi Ʃed.",
+        "It provides error detec tion and correc tion mechanisms to ensure reliable communica tion."
+      ],
+      "paragraph": "No connec tion is established before\nsending data. Layers Physical, Data Link, Network, Transport,\nSession, Presenta tion, Applica tion. Network Interface, Internet,\nTransport, Applica tion.",
+      "title": "Tion • Data • Network"
+    },
+    "keywords": [
+      {
+        "score": 11.4403,
+        "term": "tion"
+      },
+      {
+        "score": 9.4982,
+        "term": "data"
+      },
+      {
+        "score": 7.4067,
+        "term": "network"
+      },
+      {
+        "score": 5.958,
+        "term": "frame"
+      },
+      {
+        "score": 5.5917,
+        "term": "used"
+      },
+      {
+        "score": 5.4984,
+        "term": "communica"
+      },
+      {
+        "score": 5.1177,
+        "term": "networks"
+      },
+      {
+        "score": 4.2122,
+        "term": "protocol"
+      },
+      {
+        "score": 4.0003,
+        "term": "wireless"
+      },
+      {
+        "score": 3.8928,
+        "term": "control"
+      },
+      {
+        "score": 3.8928,
+        "term": "layer"
+      },
+      {
+        "score": 3.7841,
+        "term": "devices"
+      },
+      {
+        "score": 3.4507,
+        "term": "transmission"
+      },
+      {
+        "score": 3.4507,
+        "term": "error"
+      },
+      {
+        "score": 3.4507,
+        "term": "access"
+      }
+    ],
+    "mindmap": {
+      "edges": [
+        {
+          "from": "topic",
+          "label": "explains",
+          "to": "theme_1",
+          "id": "65135b1a-660c-42c9-8da4-25ce6aa62827"
+        },
+        {
+          "from": "theme_1",
+          "label": "includes",
+          "to": "detail_1_tion",
+          "id": "62aeb1dd-c686-455e-8028-7e3987ebb0eb"
+        },
+        {
+          "from": "theme_1",
+          "label": "includes",
+          "to": "detail_1_data",
+          "id": "af4bdac3-79db-4050-8f37-1aeb1c4280e4"
+        },
+        {
+          "from": "topic",
+          "label": "explains",
+          "to": "theme_2",
+          "id": "d7a99665-ab61-4e61-b480-8d7073632b24"
+        },
+        {
+          "from": "theme_2",
+          "label": "includes",
+          "to": "detail_2_tion",
+          "id": "3cb8b0dc-61eb-4c79-ab5a-82239fb8afc9"
+        },
+        {
+          "from": "theme_2",
+          "label": "includes",
+          "to": "detail_2_data",
+          "id": "f7aa8b5d-cd72-4c6f-ac6c-38c921880acf"
+        },
+        {
+          "from": "theme_2",
+          "label": "includes",
+          "to": "detail_2_network",
+          "id": "3be5c382-f974-4a77-a51a-68dbbda89cb1"
+        },
+        {
+          "from": "topic",
+          "label": "explains",
+          "to": "theme_3",
+          "id": "c31f5656-cf5f-494f-9a6d-407e8cee1147"
+        },
+        {
+          "from": "theme_3",
+          "label": "includes",
+          "to": "detail_3_tion",
+          "id": "ab3a2619-ec8b-431b-b693-63baef415110"
+        },
+        {
+          "from": "theme_3",
+          "label": "includes",
+          "to": "detail_3_network",
+          "id": "189279a8-9bc8-4ec2-b712-3c511d109bba"
+        },
+        {
+          "from": "topic",
+          "label": "explains",
+          "to": "theme_4",
+          "id": "dfac0297-4117-4418-b1fe-e75f332ab744"
+        },
+        {
+          "from": "theme_4",
+          "label": "includes",
+          "to": "detail_4_data",
+          "id": "2c9dd99f-086b-4e8c-adc0-e33a585c94bd"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "communica co-occurs with tion (43)",
+          "to": "topic",
+          "id": "f34e9cbd-dd76-4fe3-8012-40181af3da44"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "data co-occurs with tion (29)",
+          "to": "topic",
+          "id": "c0df9258-4908-40e1-9541-46130e477695"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "tion co-occurs with used (25)",
+          "to": "topic",
+          "id": "b8738426-7c19-4918-a1eb-7b18626ca801"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "network co-occurs with tion (20)",
+          "to": "topic",
+          "id": "e046189e-a338-430f-ba14-05848c7a133e"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "networks co-occurs with tion (18)",
+          "to": "topic",
+          "id": "5a566bf0-4054-4477-9e87-0330a0f8d2dc"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "error co-occurs with tion (16)",
+          "to": "topic",
+          "id": "a9deeb46-56c8-47a9-b858-68898d49af62"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "data co-occurs with transmission (14)",
+          "to": "topic",
+          "id": "792aa33e-5608-4544-be0c-cdcf03e80c52"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "networks co-occurs with used (13)",
+          "to": "topic",
+          "id": "97b33f0a-cc2c-4174-89fc-0bd4fdbd5d0d"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "protocol co-occurs with tion (13)",
+          "to": "topic",
+          "id": "45ffbca3-1317-44cd-b5d3-80638884c967"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "devices co-occurs with tion (12)",
+          "to": "topic",
+          "id": "dd54a03a-6ddb-430c-9288-04b9fe59aec2"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "data co-occurs with networks (12)",
+          "to": "topic",
+          "id": "ffc34be3-cf1d-4d52-8512-0d14536279e7"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "tion co-occurs with transmission (11)",
+          "to": "topic",
+          "id": "b152810a-5a58-4ac3-a2c2-11f11bdb872e"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "data co-occurs with layer (11)",
+          "to": "topic",
+          "id": "b7bd283a-f734-43cc-a704-61c976364f63"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "frame co-occurs with tion (11)",
+          "to": "topic",
+          "id": "00129bab-0fe3-411c-bffc-836d0b5298f2"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "data co-occurs with frame (11)",
+          "to": "topic",
+          "id": "9abfcac1-68e7-496d-af8f-cf1d3828018c"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "communica co-occurs with networks (10)",
+          "to": "topic",
+          "id": "9605fff4-7b4f-4b05-8cc2-c22261c17b54"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "network co-occurs with used (10)",
+          "to": "topic",
+          "id": "d6096345-dc43-4e77-8237-3fcb60c1f317"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "communica co-occurs with network (10)",
+          "to": "topic",
+          "id": "e559cdf1-f7dd-4583-a6c8-71ec8052307e"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "data co-occurs with network (10)",
+          "to": "topic",
+          "id": "0980ae16-54e3-4a75-a09d-bf96cf98a8a4"
+        },
+        {
+          "dashes": true,
+          "from": "topic",
+          "hidden": true,
+          "title": "communica co-occurs with used (10)",
+          "to": "topic",
+          "id": "0bae4203-d44d-4a51-b977-64e2053be9de"
+        }
+      ],
+      "nodes": [
+        {
+          "group": "topic",
+          "id": "topic",
+          "label": "Tion | Data | Network",
+          "level": 0
+        },
+        {
+          "group": "theme",
+          "id": "theme_1",
+          "label": "No connec tion is established before\nsending data.",
+          "level": 1
+        },
+        {
+          "group": "detail",
+          "id": "detail_1_tion",
+          "label": "Tion",
+          "level": 2
+        },
+        {
+          "group": "detail",
+          "id": "detail_1_data",
+          "label": "Data",
+          "level": 2
+        },
+        {
+          "group": "theme",
+          "id": "theme_2",
+          "label": "Layers Physical, Data Link, Network, Transport,\nSession, Presenta tion, ...",
+          "level": 1
+        },
+        {
+          "group": "detail",
+          "id": "detail_2_tion",
+          "label": "Tion",
+          "level": 2
+        },
+        {
+          "group": "detail",
+          "id": "detail_2_data",
+          "label": "Data",
+          "level": 2
+        },
+        {
+          "group": "detail",
+          "id": "detail_2_network",
+          "label": "Network",
+          "level": 2
+        },
+        {
+          "group": "theme",
+          "id": "theme_3",
+          "label": "Network Interface, Internet,\nTransport, Applica tion.",
+          "level": 1
+        },
+        {
+          "group": "detail",
+          "id": "detail_3_tion",
+          "label": "Tion",
+          "level": 2
+        },
+        {
+          "group": "detail",
+          "id": "detail_3_network",
+          "label": "Network",
+          "level": 2
+        },
+        {
+          "group": "theme",
+          "id": "theme_4",
+          "label": "Data: Actual data being transmi Ʃed.",
+          "level": 1
+        },
+        {
+          "group": "detail",
+          "id": "detail_4_data",
+          "label": "Data",
+          "level": 2
+        }
+      ]
+    },
+    "saved_at": "2026-04-13T17:51:58"
+  }
+]

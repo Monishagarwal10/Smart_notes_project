@@ -1,0 +1,6 @@
+Flask
+PyPDF2
+spacy
+nltk
+scikit-learn
+reportlab
