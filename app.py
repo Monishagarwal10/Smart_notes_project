@@ -7,6 +7,7 @@ from flask import Flask, jsonify, render_template, request, send_file
 
 from utils.nlp_utils import (
     check_quiz_answers,
+    clean_speech_transcript,
     clean_text,
     extract_keywords,
     generate_quiz_questions,
@@ -138,7 +139,9 @@ def process_speech():
     if not transcript:
         return jsonify({"error": "Transcript is empty. Capture some speech first."}), 400
 
-    payload = build_response_payload("speech", title, transcript)
+    cleaned_transcript = clean_speech_transcript(transcript)
+    payload = build_response_payload("speech", title, cleaned_transcript)
+    payload["original_transcript"] = transcript
     return jsonify(payload)
 
 

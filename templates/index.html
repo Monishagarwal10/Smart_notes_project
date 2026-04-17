@@ -93,15 +93,22 @@
         <p id="pdfWarning" class="warning-text"></p>
     </section>
 
-    <section id="live-lecture" class="section card-panel">
+    <section id="live-lecture" class="section card-panel lecture-card">
         <h2>Live Lecture Notes</h2>
-        <p class="section-subtitle">Use microphone capture mode for live classes, webinars, or recorded lectures playing on your device.</p>
-        <div class="button-row">
-            <button id="startSpeech" class="btn btn-primary">Start Live Lecture Notes</button>
-            <button id="stopSpeech" class="btn btn-danger">Stop</button>
-            <button id="processSpeech" class="btn btn-secondary">Process Transcript</button>
+        <p class="section-subtitle">Lecture Mode continuously listens in real time, keeps full transcript flow, and processes everything at the end.</p>
+        <div class="lecture-status-wrap">
+            <span id="lectureRecordingDot" class="recording-dot"></span>
+            <span class="lecture-status-label">Mic Status:</span>
+            <strong id="lectureStatus">Stopped</strong>
         </div>
-        <textarea id="speechTranscript" rows="7" placeholder="Live transcript will appear here..."></textarea>
+        <div class="button-row">
+            <button id="startSpeech" class="btn btn-primary">Start Lecture</button>
+            <button id="pauseSpeech" class="btn btn-outline">Pause</button>
+            <button id="processSpeech" class="btn btn-danger">Stop &amp; Process</button>
+        </div>
+        <div id="speechTranscript" class="lecture-transcript" aria-live="polite">
+            Live transcript will appear here...
+        </div>
     </section>
 
     <section id="manual-notes" class="section card-panel">

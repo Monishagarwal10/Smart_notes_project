@@ -522,6 +522,71 @@ body.map-fullscreen .map-controls-overlay {
     margin-top: 0.7rem;
 }
 
+.lecture-card {
+    border: 1px solid #e2e8f8;
+}
+
+.lecture-status-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.2rem;
+    background: #f6f9ff;
+    border: 1px solid #dce5fb;
+    border-radius: 999px;
+    padding: 0.38rem 0.7rem;
+}
+
+.lecture-status-label {
+    color: #526387;
+    font-size: 0.86rem;
+}
+
+.recording-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #a8b3cf;
+}
+
+.recording-dot.active {
+    background: #d71f35;
+    box-shadow: 0 0 0 0 rgba(215, 31, 53, 0.8);
+    animation: pulse-recording 1.35s infinite;
+}
+
+@keyframes pulse-recording {
+    0% {
+        box-shadow: 0 0 0 0 rgba(215, 31, 53, 0.65);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(215, 31, 53, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(215, 31, 53, 0);
+    }
+}
+
+.lecture-transcript {
+    margin-top: 0.75rem;
+    width: 100%;
+    min-height: 180px;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 1px solid #d5ddeb;
+    padding: 0.75rem 0.8rem;
+    background: #fff;
+    color: #23314f;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.lecture-interim {
+    color: #6b7da3;
+    font-style: italic;
+}
+
 .toast {
     position: fixed;
     right: 16px;

@@ -70,6 +70,16 @@ def clean_text(text):
     return text
 
 
+def clean_speech_transcript(text):
+    if not text:
+        return ""
+    # Remove common filler words while keeping sentence punctuation intact.
+    filler_pattern = r"\b(um+|uh+|erm+|hmm+|like|you know|i mean|actually|basically|okay|yeah)\b"
+    cleaned = re.sub(filler_pattern, " ", text, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\s{2,}", " ", cleaned).strip()
+    return clean_text(cleaned)
+
+
 def split_sentences(text):
     text = clean_text(text)
     if not text:

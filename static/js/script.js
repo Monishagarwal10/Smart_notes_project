@@ -1,7 +1,13 @@
 const state = {
     currentResult: null,
     recognition: null,
-    speechBuffer: "",
+    lecture: {
+        finalTranscript: "",
+        interimTranscript: "",
+        status: "stopped", // stopped | listening | paused
+        shouldRestart: false,
+        isStopping: false,
+    },
 };
 
 const elements = {
@@ -14,9 +20,11 @@ const elements = {
     manualText: document.getElementById("manualText"),
     processText: document.getElementById("processText"),
     startSpeech: document.getElementById("startSpeech"),
-    stopSpeech: document.getElementById("stopSpeech"),
+    pauseSpeech: document.getElementById("pauseSpeech"),
     processSpeech: document.getElementById("processSpeech"),
     speechTranscript: document.getElementById("speechTranscript"),
+    lectureStatus: document.getElementById("lectureStatus"),
+    lectureRecordingDot: document.getElementById("lectureRecordingDot"),
     summaryTitle: document.getElementById("summaryTitle"),
     summaryMeta: document.getElementById("summaryMeta"),
     summaryParagraph: document.getElementById("summaryParagraph"),
@@ -34,10 +42,25 @@ const elements = {
 };
 
 function showToast(message, isError = false) {
+    if (!elements.toast) {
+        return;
+    }
     elements.toast.textContent = message;
     elements.toast.style.background = isError ? "#8b1f2f" : "#1f2e57";
     elements.toast.classList.add("show");
     setTimeout(() => elements.toast.classList.remove("show"), 2200);
+}
+
+function onClick(element, handler) {
+    if (element) {
+        element.addEventListener("click", handler);
+    }
+}
+
+function onSubmit(element, handler) {
+    if (element) {
+        element.addEventListener("submit", handler);
+    }
 }
 
 function setCurrentResult(data) {
@@ -100,13 +123,13 @@ function triggerDownload(filename, blob) {
     URL.revokeObjectURL(url);
 }
 
-elements.menuToggle.addEventListener("click", () => {
+onClick(elements.menuToggle, () => {
     if (elements.navMenu) {
         elements.navMenu.classList.toggle("open");
     }
 });
 
-elements.pdfForm.addEventListener("submit", async (event) => {
+onSubmit(elements.pdfForm, async (event) => {
     event.preventDefault();
     const file = elements.pdfFile.files[0];
     if (!file) {
@@ -128,7 +151,7 @@ elements.pdfForm.addEventListener("submit", async (event) => {
     }
 });
 
-elements.processText.addEventListener("click", async () => {
+onClick(elements.processText, async () => {
     const text = elements.manualText.value.trim();
     if (!text) {
         showToast("Enter notes before processing.", true);
@@ -153,6 +176,48 @@ elements.processText.addEventListener("click", async () => {
     }
 });
 
+function updateLectureStatus(status) {
+    state.lecture.status = status;
+    if (elements.lectureStatus) {
+        const statusText = status.charAt(0).toUpperCase() + status.slice(1);
+        elements.lectureStatus.textContent = statusText;
+    }
+    if (elements.lectureRecordingDot) {
+        elements.lectureRecordingDot.classList.toggle("active", status === "listening");
+    }
+}
+
+function renderLectureTranscript() {
+    if (!elements.speechTranscript) {
+        return;
+    }
+    const finalText = state.lecture.finalTranscript.trim();
+    const interimText = state.lecture.interimTranscript.trim();
+    if (!finalText && !interimText) {
+        elements.speechTranscript.innerHTML = "Live transcript will appear here...";
+        return;
+    }
+    const safeFinal = finalText.replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+    })[char]);
+    const safeInterim = interimText.replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+    })[char]);
+
+    elements.speechTranscript.innerHTML = `
+        <span>${safeFinal}</span>${interimText ? ` <span class="lecture-interim">${safeInterim}</span>` : ""}
+    `;
+    elements.speechTranscript.scrollTop = elements.speechTranscript.scrollHeight;
+}
+
 function initSpeechRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
@@ -163,44 +228,108 @@ function initSpeechRecognition() {
     state.recognition.continuous = true;
     state.recognition.interimResults = true;
     state.recognition.lang = "en-US";
+    state.recognition.maxAlternatives = 1;
 
     state.recognition.onresult = (event) => {
-        let transcript = "";
+        let interim = "";
         for (let i = event.resultIndex; i < event.results.length; i += 1) {
-            transcript += event.results[i][0].transcript + " ";
+            const chunk = event.results[i][0].transcript.trim();
+            if (!chunk) {
+                continue;
+            }
+            if (event.results[i].isFinal) {
+                state.lecture.finalTranscript = `${state.lecture.finalTranscript} ${chunk}`.trim();
+            } else {
+                interim += `${chunk} `;
+            }
         }
-        state.speechBuffer = `${state.speechBuffer} ${transcript}`.trim();
-        elements.speechTranscript.value = state.speechBuffer;
+        state.lecture.interimTranscript = interim.trim();
+        renderLectureTranscript();
     };
 
-    state.recognition.onerror = () => {
-        showToast("Speech recognition encountered an issue.", true);
+    state.recognition.onerror = (event) => {
+        const errorType = event.error || "unknown";
+        if (errorType === "not-allowed" || errorType === "service-not-allowed") {
+            showToast("Microphone permission denied. Please allow mic access.", true);
+            state.lecture.shouldRestart = false;
+            updateLectureStatus("stopped");
+            return;
+        }
+        if (errorType === "no-speech") {
+            showToast("No speech detected. Listening will continue automatically.");
+            return;
+        }
+        if (errorType === "network") {
+            showToast("Network issue in speech service. Auto-retrying...");
+            return;
+        }
+        showToast(`Speech recognition issue: ${errorType}`, true);
+    };
+
+    state.recognition.onend = () => {
+        if (state.lecture.isStopping) {
+            state.lecture.isStopping = false;
+            return;
+        }
+        if (state.lecture.shouldRestart && state.lecture.status === "listening") {
+            setTimeout(() => {
+                try {
+                    state.recognition.start();
+                } catch (error) {
+                    showToast("Retrying microphone connection...");
+                }
+            }, 200);
+            return;
+        }
+        if (state.lecture.status !== "paused") {
+            updateLectureStatus("stopped");
+        }
     };
 }
 
-elements.startSpeech.addEventListener("click", () => {
+function startLecture() {
     if (!state.recognition) {
         initSpeechRecognition();
     }
-    if (state.recognition) {
+    if (state.recognition && state.lecture.status !== "listening") {
+        state.lecture.shouldRestart = true;
+        state.lecture.isStopping = false;
+        state.lecture.interimTranscript = "";
+        updateLectureStatus("listening");
         state.recognition.start();
-        showToast("Live lecture capture started.");
+        showToast("Lecture mode started. Listening continuously...");
     }
-});
+}
 
-elements.stopSpeech.addEventListener("click", () => {
-    if (state.recognition) {
+function pauseLecture() {
+    if (state.recognition && state.lecture.status === "listening") {
+        state.lecture.shouldRestart = false;
+        state.lecture.isStopping = true;
+        state.lecture.interimTranscript = "";
+        updateLectureStatus("paused");
         state.recognition.stop();
-        showToast("Capture stopped.");
+        renderLectureTranscript();
+        showToast("Lecture paused.");
+    } else if (state.lecture.status === "paused") {
+        startLecture();
     }
-});
+}
 
-elements.processSpeech.addEventListener("click", async () => {
-    const transcript = elements.speechTranscript.value.trim();
+async function stopLectureAndProcess() {
+    const transcript = `${state.lecture.finalTranscript} ${state.lecture.interimTranscript}`.trim();
     if (!transcript) {
         showToast("No transcript captured yet.", true);
         return;
     }
+    if (state.recognition && state.lecture.status === "listening") {
+        state.lecture.shouldRestart = false;
+        state.lecture.isStopping = true;
+        state.recognition.stop();
+    }
+    updateLectureStatus("stopped");
+    state.lecture.interimTranscript = "";
+    renderLectureTranscript();
+
     try {
         const result = await fetchJson("/process_speech", {
             method: "POST",
@@ -211,16 +340,20 @@ elements.processSpeech.addEventListener("click", async () => {
             }),
         });
         setCurrentResult(result);
-        showToast("Transcript processed. Redirecting to Summary page.");
+        showToast("Lecture transcript processed. Redirecting to Summary page.");
         setTimeout(() => {
             window.location.href = "/summary";
         }, 550);
     } catch (error) {
         showToast(error.message, true);
     }
-});
+}
 
-elements.saveSession.addEventListener("click", async () => {
+onClick(elements.startSpeech, startLecture);
+onClick(elements.pauseSpeech, pauseLecture);
+onClick(elements.processSpeech, stopLectureAndProcess);
+
+onClick(elements.saveSession, async () => {
     if (!state.currentResult) {
         showToast("Process notes before saving.", true);
         return;
@@ -272,7 +405,7 @@ async function loadSessions() {
     }
 }
 
-elements.refreshSessions.addEventListener("click", loadSessions);
+onClick(elements.refreshSessions, loadSessions);
 
 async function exportViaBackend(exportType, fallbackFilename) {
     if (!state.currentResult) {
@@ -313,12 +446,19 @@ async function exportViaBackend(exportType, fallbackFilename) {
     }
 }
 
-elements.exportSummaryTxt.addEventListener("click", () => exportViaBackend("summary_txt", "summary.txt"));
-elements.exportSummaryPdf.addEventListener("click", () => exportViaBackend("summary_pdf", "summary.pdf"));
-elements.exportKeywords.addEventListener("click", () => exportViaBackend("keywords_json", "keywords.json"));
-elements.exportFull.addEventListener("click", () => exportViaBackend("full_json", "note_package.json"));
-elements.exportMindmapPng.addEventListener("click", () => {
+onClick(elements.exportSummaryTxt, () => exportViaBackend("summary_txt", "summary.txt"));
+onClick(elements.exportSummaryPdf, () => exportViaBackend("summary_pdf", "summary.pdf"));
+onClick(elements.exportKeywords, () => exportViaBackend("keywords_json", "keywords.json"));
+onClick(elements.exportFull, () => exportViaBackend("full_json", "note_package.json"));
+onClick(elements.exportMindmapPng, () => {
     showToast("Use Mind Map page to export the focused map.");
 });
 
-loadSessions();
+if (elements.lectureStatus) {
+    updateLectureStatus("stopped");
+    renderLectureTranscript();
+}
+
+if (elements.sessionList) {
+    loadSessions();
+}
